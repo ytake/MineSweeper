@@ -1,17 +1,33 @@
 <?php
+namespace Mine\Sweeper;
 
-class Board{
+/**
+ * Class Board
+ * @package Mine\Sweeper
+ */
+class Board
+{
+
     //表示する横の長さ
     private $x;
+
     //表示する縦の長さ
     private $y;
+
     //爆弾
     private $mine;
-    //マス
-    private $box = array();
-    //非表示個数
-    private $no_open ;
 
+    //マス
+    private $box = [];
+
+    //非表示個数
+    private $no_open;
+
+    /**
+     * @param $x
+     * @param $y
+     * @param Mine $mine
+     */
     public function __construct( $x, $y, Mine $mine )
     {
         $this->x    = $x;
@@ -19,10 +35,18 @@ class Board{
         $this->mine = $mine;
         $this->make();
     }
+
+    /**
+     * @return mixed
+     */
     public function getNoOpen()
     {
         return $this->no_open;
     }
+
+    /**
+     *
+     */
     public function make()
     {
         for($i=1; $i <= $this->y; $i++){
@@ -31,6 +55,10 @@ class Board{
             }
         }
     }
+
+    /**
+     * @return void
+     */
     public function show()
     {
         //非表示個数の初期化
@@ -42,6 +70,10 @@ class Board{
             echo PHP_EOL;
         }
     }
+
+    /**
+     * @param $disp
+     */
     public function disp( $disp )
     {
         switch($disp){
@@ -57,6 +89,11 @@ class Board{
                 break;
         }
     }
+
+    /**
+     * @param $x
+     * @param $y
+     */
     public function open( $x, $y )
     {
         //範囲外は終了
@@ -70,7 +107,13 @@ class Board{
         //現在のboxが0だったら探索する
         if( $this->box[$x][$y] === OPEN ) $this->search( $x, $y);
     }
-    //今のマスの周りの爆弾を調べる
+
+    /**
+     * 今のマスの周りの爆弾を調べる
+     * @param $x
+     * @param $y
+     * @return int
+     */
     public function around( $x, $y )
     {
         $mine = OPEN;
@@ -92,6 +135,7 @@ class Board{
         if( $this->mine->is( $x - 1, $y - 1 )) $mine++;
         return $mine;
     }
+
     //探索 上,右,下,左
     public function search( $x, $y)
     {
@@ -100,18 +144,22 @@ class Board{
         $this->down(  $x, $y );
         $this->left(  $x, $y );
     }
+
     public function up( $x, $y )
     {
         return $this->open( $x , $y - 1  );
     }
+
     public function right($x, $y )
     {
         return $this->open( $x + 1 , $y );
     }
+
     public function down( $x, $y )
     {
         return $this->open( $x , $y + 1 );
     }
+
     public function left( $x, $y )
     {
         return $this->open( $x - 1 , $y );

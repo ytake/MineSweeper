@@ -1,12 +1,22 @@
 <?php
+namespace Mine\Sweeper;
 
-class User {
+/**
+ * Class User
+ * @package Mine\Sweeper
+ */
+class User
+{
+
     //インプットオブジェクト
     private $input;
+
     //レベル
     private $level;
+
     //入力チェック
     private $validation;
+
     public function __construct()
     {
         $this->input      = new Input;
@@ -18,16 +28,18 @@ class User {
         $this->input->message( $this->message->level['list'] );
         try{
             $this->level = $this->input->scan();
-            if(! $this->validation->validateLevel( $this->level ) ) throw new Exception( $this->message->errors['level'] );
-        }catch( Exception $e ){
+            if(! $this->validation->validateLevel( $this->level ) ) throw new \Exception( $this->message->errors['level'] );
+        }catch(\Exception $e ){
             echo $e->getMessage();
             exit;
         }
     }
+
     public function get( $accseser )
     {
         return $this->$accseser;
     }
+
     public function choose()
     {
         $this->input->message( $this->message->choose['x'] );
