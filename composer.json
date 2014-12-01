@@ -1,0 +1,41 @@
+{
+    "name": "ytake/mine-sweeper",
+    "description": "mine sweeper for php cli application!",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": " MasatoYoshioka"
+        },
+        {
+            "name": "yuuki takezawa",
+            "email": "yuuki.takezawa@comnect.jp.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "react/socket": "0.*"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": "2.*",
+        "symfony/console": "2.*",
+        "phpunit/phpunit": "4.*",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mine\\Sweeper\\": "src/"
+        },
+        "files": [
+            "src/define.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mine\\__Sweeper\\": "tests/"
+        }
+    },
+    "suggest": {
+        "ext-zmq": "enjoy server push bomb!"
+    }
+}

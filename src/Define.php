@@ -8,5 +8,3 @@ define( 'EXPERT',   2 );
 define( 'OPEN',   0 );
 define( 'NORMAL',-1 );
 define( 'MINE',  -2 );
-
-
